@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+
+  resources :posts do
+    resources :comments
+  end
   devise_for :users
   resources :friends
   root 'home#index'
