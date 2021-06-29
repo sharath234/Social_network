@@ -4,7 +4,11 @@ class FriendsController < ApplicationController
 
   # GET /friends or /friends.json
   def index
-    @friends = Friend.all
+    if params[:search]
+      @friends = Friend.search(params[:search])
+    else
+      @friends = Friend.all
+    end
   end
 
   # GET /friends/1 or /friends/1.json
@@ -65,6 +69,6 @@ class FriendsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def friend_params
-      params.require(:friend).permit(:name, :age, :address, :phone, :email, :user_id)
+      params.require(:friend).permit(:name, :age, :address, :phone, :email, :user_id,)
     end
 end
